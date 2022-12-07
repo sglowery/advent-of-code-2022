@@ -1,6 +1,6 @@
 package dayOne
 
-import java.io.File
+import common.parseFileToStringList
 
 class DayOne {
 
@@ -20,18 +20,13 @@ class DayOne {
     }
 
     private fun getCalorieListFromFile(file: String): Collection<Int?> {
-        return parseFileToStrings(file).map(::toNumberOrNull)
-    }
-
-    private fun parseFileToStrings(file: String): Collection<String> {
-        return File(file).useLines { it.toList() }
+        return parseFileToStringList(file).map(::toNumberOrNull)
     }
 
     private fun toNumberOrNull(string: String): Int? = when (string.trim().isEmpty()) {
         true -> null
         false -> Integer.parseInt(string)
     }
-
 
 }
 

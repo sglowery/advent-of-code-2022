@@ -1,8 +1,9 @@
 package dayOne
 
-import java.io.File
+import common.parseFileToStringList
 
 class DayOnePartTwo {
+
     fun getSumOfTopThreeCalories(file: String): Int {
         val calories = getCalorieListFromFile(file)
         return sumCaloriesByElf(calories).sortedDescending().take(3).sum()
@@ -23,17 +24,14 @@ class DayOnePartTwo {
     }
 
     private fun getCalorieListFromFile(file: String): Collection<Int?> {
-        return parseFileToStrings(file).map(::toNumberOrNull)
-    }
-
-    private fun parseFileToStrings(file: String): Collection<String> {
-        return File(file).useLines { it.toList() }
+        return parseFileToStringList(file).map(::toNumberOrNull)
     }
 
     private fun toNumberOrNull(string: String): Int? = when (string.trim().isEmpty()) {
         true -> null
         false -> Integer.parseInt(string)
     }
+
 }
 
 fun main(args: Array<String>) {
